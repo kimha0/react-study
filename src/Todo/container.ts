@@ -5,7 +5,7 @@ import { Item, TodoState, TodoActionTypes } from './types';
 import { RootState } from './../types';
 
 export const initialState = {
-  list: [] as Item[],
+  list: [] as Readonly<Item[]>,
 }
 
 export const ACTION_TYPE = {

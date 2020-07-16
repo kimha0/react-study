@@ -1,0 +1,21 @@
+{
+  "todo": {
+    "list": [
+      {
+        "uuid": "1",
+        "title": "신한은행 보안카드 재발급하기",
+        "isVisible": true
+      },
+      {
+        "uuid": "2",
+        "title": "스터디 준비하기",
+        "isVisible": true
+      },
+      {
+        "uuid": "3",
+        "title": "곤지암 보기",
+        "isVisible": true
+      }
+    ]
+  }
+}
