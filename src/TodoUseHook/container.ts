@@ -10,6 +10,10 @@ export const ACTION_TYPE = {
   UPDATE_LIST: 'todoUseHook/UPDATE_LIST',
 }
 
+export const add = (item: Item) => ({ type: ACTION_TYPE.ADD_LIST, payload: item });
+export const remove = (item: Item) => ({ type: ACTION_TYPE.REMOVE_LIST, payload: item });
+export const update = (item: Item) => ({ type: ACTION_TYPE.UPDATE_LIST, payload: item });
+
 export const todoUseHookReducer = (state: TodoState = initialState, action: TodoActionTypes): TodoState => {
   switch (action.type) {
     case ACTION_TYPE.ADD_LIST: {

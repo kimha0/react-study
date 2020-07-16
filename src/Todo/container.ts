@@ -9,9 +9,9 @@ export const initialState = {
 }
 
 export const ACTION_TYPE = {
-  ADD_LIST: 'todo/ADD_LIST',
-  REMOVE_LIST: 'todo/REMOVE_LIST',
-  UPDATE_LIST: 'todo/UPDATE_LIST',
+  ADD_LIST: 'todo/ADD_LIST' as const,
+  REMOVE_LIST: 'todo/REMOVE_LIST' as const,
+  UPDATE_LIST: 'todo/UPDATE_LIST' as const,
 }
 
 export const todoReducer = (state: TodoState = initialState, action: TodoActionTypes): TodoState => {
@@ -45,10 +45,14 @@ const mapState = (state: RootState) => ({
   list: state.todo.list,
 });
 
+const add = (item: Item) => ({ type: ACTION_TYPE.ADD_LIST, payload: item });
+const remove = (item: Item) => ({ type: ACTION_TYPE.REMOVE_LIST, payload: item });
+const update = (item: Item) => ({ type: ACTION_TYPE.UPDATE_LIST, payload: item });
+
 const mapDispatch = {
-  add: (item: Item) => ({ type: ACTION_TYPE.ADD_LIST, payload: item }),
-  remove: (item: Item) => ({ type: ACTION_TYPE.REMOVE_LIST, payload: item }),
-  update: (item: Item) => ({ type: ACTION_TYPE.UPDATE_LIST, payload: item }),
+  add,
+  remove,
+  update,
 }
 
 export const connector = connect(mapState, mapDispatch);

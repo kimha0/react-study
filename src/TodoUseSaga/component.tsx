@@ -5,14 +5,9 @@ import InputComponent from './components/InputComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 import { TodoActionTypes } from './types';
-import { ACTION_TYPE } from './container';
 import { RootState } from '../types';
+import { update, remove, add, get } from './container';
 
-export const add = (item: Item) => ({ type: ACTION_TYPE.ADD_LIST, payload: item });
-export const remove = (item: Item) => ({ type: ACTION_TYPE.REMOVE_LIST, payload: item });
-export const update = (item: Item) => ({ type: ACTION_TYPE.UPDATE_LIST, payload: item });
-export const get = () => ({ type: ACTION_TYPE.GET_LIST });
-export const set = (list: Item[]) => ({ type: ACTION_TYPE.SET_LIST, payload: list });
 
 
 function TodoUseHookComponent() {
