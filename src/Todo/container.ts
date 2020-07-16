@@ -46,7 +46,7 @@ const mapState = (state: RootState) => ({
 });
 
 const mapDispatch = {
-  add: (list: Item) => ({ type: ACTION_TYPE.ADD_LIST, payload: list }),
+  add: (item: Item) => ({ type: ACTION_TYPE.ADD_LIST, payload: item }),
   remove: (item: Item) => ({ type: ACTION_TYPE.REMOVE_LIST, payload: item }),
   update: (item: Item) => ({ type: ACTION_TYPE.UPDATE_LIST, payload: item }),
 }
