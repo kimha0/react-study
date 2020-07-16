@@ -41,13 +41,14 @@ export const todoReducer = (state: TodoState = initialState, action: TodoActionT
   }
 }
 
-const mapState = (state: RootState) => ({
-  list: state.todo.list,
-});
-
 const add = (item: Item) => ({ type: ACTION_TYPE.ADD_LIST, payload: item });
 const remove = (item: Item) => ({ type: ACTION_TYPE.REMOVE_LIST, payload: item });
 const update = (item: Item) => ({ type: ACTION_TYPE.UPDATE_LIST, payload: item });
+
+
+const mapState = (state: RootState) => ({
+  list: state.todo.list,
+});
 
 const mapDispatch = {
   add,
