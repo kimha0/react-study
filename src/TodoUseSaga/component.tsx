@@ -18,10 +18,10 @@ function TodoUseHookComponent() {
 
   const filteredList = React.useMemo(() => list.filter(item => item.isVisible), [list]);
 
-  const updateHandle = (item: Item) => dispatch(update(item));
-  const removeHandle = (item: Item) => dispatch(remove(item));
-  const addHandle = (item: Item) => dispatch(add(item));
-  const getHandle = () => dispatch(get());
+  const updateHandle = React.useCallback((item: Item) => dispatch(update(item)), [dispatch]);
+  const removeHandle = React.useCallback((item: Item) => dispatch(remove(item)), [dispatch]);
+  const addHandle = React.useCallback((item: Item) => dispatch(add(item)), [dispatch]);
+  const getHandle = React.useCallback(() => dispatch(get()), [dispatch]);
 
 
   return (
