@@ -14,6 +14,10 @@ export function* watchTodoListRequestStart() {
 }
 
 function* todoList() {
-  const list = yield call(fetchTodo)
-  yield put(set(list));
+  try {
+    const list = yield call(fetchTodo)
+    yield put(set(list));
+  } catch (e) {
+    
+  }
 }

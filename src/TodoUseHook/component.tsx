@@ -4,7 +4,7 @@ import ListComponent from './components/ListComponent';
 import InputComponent from './components/InputComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
-import { TodoActionTypes } from '../Todo/types';
+import { TodoActionTypes } from '../TodoUseHook/types';
 import { ACTION_TYPE } from '../TodoUseHook/container';
 import { RootState } from '../types';
 
@@ -16,7 +16,7 @@ const update = (item: Item) => ({ type: ACTION_TYPE.UPDATE_LIST, payload: item }
 function TodoUseHookComponent() {
 
   const dispatch = useDispatch<Dispatch<TodoActionTypes>>();
-  const list = useSelector<RootState, Item[]>(state => state.todoUseHook.list);
+  const list = useSelector<RootState, Readonly<Item[]>>(state => state.todoUseHook.list);
 
 
   const filteredList = React.useMemo(() => list.filter(item => item.isVisible), [list]);

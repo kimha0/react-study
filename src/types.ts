@@ -1,2 +1,2 @@
-import { rootReducer } from './index'
+import { rootReducer } from './store'
 export type RootState = ReturnType<typeof rootReducer>;
