@@ -9,9 +9,13 @@ import DockMonitor from 'redux-devtools-dock-monitor';
 
 
 import Todo, { todoReducer } from './Todo/container';
+import { todoUseHookReducer } from './TodoUseHook/container';
+import TodoUseHookComponent from './TodoUseHook/component';
+import Style from './Style';
 
 export const rootReducer = combineReducers({
   todo: todoReducer,
+  todoUseHook: todoUseHookReducer,
 });
 
 const DevTools = createDevTools(
@@ -28,7 +32,10 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <DevTools/>
-      <Todo />
+      <Style.View>
+        <Todo />
+        <TodoUseHookComponent />
+      </Style.View>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

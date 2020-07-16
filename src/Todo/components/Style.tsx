@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-const ListStyled = styled.div`
+const List = styled.div`
   max-width: 500px;
   box-shadow: 2px 2px 16px rgba(0, 0, 0, .35);
   margin: 20px;
@@ -40,7 +40,7 @@ const ListStyled = styled.div`
   }
 `;
 
-const InputStyled = styled.div`
+const Input = styled.div`
   border: 1px solid rgba(0, 0, 0, .15);
   display: flex;
   align-items: center;
@@ -82,9 +82,9 @@ const InputStyled = styled.div`
 `
 
 
-const Styled = {
-  ListStyled,
-  InputStyled,
+const Style = {
+  List,
+  Input,
 }
 
-export default Styled;
+export default Style;
