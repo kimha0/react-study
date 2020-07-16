@@ -46,8 +46,9 @@ const InputStyled = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 5px;
+  margin: 20px;
 
-  width: 500px;
+  max-width: 500px;
 
   box-shadow: 2px 2px 6px rgba(0, 0, 0, .35);
 
