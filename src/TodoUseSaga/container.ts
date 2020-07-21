@@ -4,14 +4,13 @@ import { success, request, ASYNC_ACTION_TYPE } from './sagas';
 
 export const initialState = {
   list: [] as Readonly<Item[]>,
-}
+};
 
 export const ACTION_TYPE = {
   ADD_LIST: 'todoUseSaga/ADD_LIST' as const,
   REMOVE_LIST: 'todoUseSaga/REMOVE_LIST' as const,
   UPDATE_LIST: 'todoUseSaga/UPDATE_LIST' as const,
-}
-
+};
 
 const add = (item: Item) => action(ACTION_TYPE.ADD_LIST, item);
 const remove = (item: Item) => action(ACTION_TYPE.REMOVE_LIST, item);

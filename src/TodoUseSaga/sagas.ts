@@ -27,10 +27,10 @@ function* fetchTodoSaga(action: ReturnType<typeof fetchTodosAsync.request>): Gen
   } catch (err) {
     yield put(fetchTodosAsync.failure(err));
   }
-}
+};
 
 export function* mainSaga() {
   yield all([
     takeEvery(fetchTodosAsync.request, fetchTodoSaga),
   ]);
-}
+};

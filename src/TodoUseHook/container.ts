@@ -3,13 +3,13 @@ import { createReducer, action } from 'typesafe-actions';
 
 export const initialState = {
   list: [] as Readonly<Item[]>,
-}
+};
 
 export const ACTION_TYPE = {
   ADD_LIST: '@todoUseHook/ADD_LIST' as const,
   REMOVE_LIST: '@todoUseHook/REMOVE_LIST' as const,
   UPDATE_LIST: '@todoUseHook/UPDATE_LIST' as const,
-}
+};
 
 const add = (item: Item) => action(ACTION_TYPE.ADD_LIST, item);
 const remove = (item: Item) => action(ACTION_TYPE.REMOVE_LIST, item);

@@ -8,11 +8,9 @@ import { RootState } from '../types';
 import { actions } from './container';
 
 function TodoUseHookComponent() {
-
   const dispatch = useDispatch<Dispatch<Actions>>();
+
   const list = useSelector<RootState, Readonly<Item[]>>(state => state.todoUseSaga.list);
-
-
   const filteredList = React.useMemo(() => list.filter(item => item.isVisible), [list]);
 
   const updateHandle = React.useCallback((item: Item) => dispatch(actions.update(item)), [dispatch]);
@@ -24,7 +22,6 @@ function TodoUseHookComponent() {
   return (
     <div className="App">
       {filteredList.map(item => <ListComponent key={item.uuid} item={item} removeHandle={removeHandle} updateHandle={updateHandle} />)}
-
       <InputComponent add={addHandle} />
       <button onClick={getHandle}>Load data</button>
     </div>
