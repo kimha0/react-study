@@ -1,5 +1,5 @@
-import { Item, TodoState } from './types';
-import { action, createReducer, ActionType } from 'typesafe-actions';
+import { Item, TodoState, Actions } from './types';
+import { action, createReducer } from 'typesafe-actions';
 import { success, request, ASYNC_ACTION_TYPE } from './sagas';
 
 export const initialState = {
@@ -25,7 +25,7 @@ export const actions = {
   request,
 };
 
-export const todoUseSagaReducer = createReducer<TodoState, ActionType<typeof actions>>(initialState, {
+export const todoUseSagaReducer = createReducer<TodoState, Actions>(initialState, {
   [ACTION_TYPE.ADD_LIST]: (state, action) => ({ ...state, list: [...state.list, action.payload], }),
   [ACTION_TYPE.REMOVE_LIST]: (state, action) => ({ ...state, list: state.list.filter(item => item.uuid !== action.payload.uuid), }),
   [ACTION_TYPE.UPDATE_LIST]: (state, action) => ({ ...state, list: state.list.reduce<Item[]>((accu, curr) => [...accu, curr.uuid === action.payload.uuid ? action.payload : curr], []), }),

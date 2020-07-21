@@ -1,24 +1,23 @@
 import React from 'react';
-import { Item } from "./types";
+import { Item, Actions } from "./types";
 import ListComponent from './components/ListComponent';
 import InputComponent from './components/InputComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
-import { TodoActionTypes } from '../TodoUseHook/types';
 import { RootState } from '../types';
-import { update, remove, add } from './container';
+import { actions } from './container';
 
 function TodoUseHookComponent() {
 
-  const dispatch = useDispatch<Dispatch<TodoActionTypes>>();
+  const dispatch = useDispatch<Dispatch<Actions>>();
   const list = useSelector<RootState, Readonly<Item[]>>(state => state.todoUseHook.list);
 
 
   const filteredList = React.useMemo(() => list.filter(item => item.isVisible), [list]);
 
-  const updateHandle = React.useCallback((item: Item) => dispatch(update(item)), [dispatch]);
-  const removeHandle = React.useCallback((item: Item) => dispatch(remove(item)), [dispatch]);
-  const addHandle = React.useCallback((item: Item) => dispatch(add(item)), [dispatch]);
+  const updateHandle = React.useCallback((item: Item) => dispatch(actions.update(item)), [dispatch]);
+  const removeHandle = React.useCallback((item: Item) => dispatch(actions.remove(item)), [dispatch]);
+  const addHandle = React.useCallback((item: Item) => dispatch(actions.add(item)), [dispatch]);
 
 
   return (

@@ -1,18 +1,15 @@
 import React from 'react';
-import { Item } from "./types";
+import { Item, Actions } from "./types";
 import ListComponent from './components/ListComponent';
 import InputComponent from './components/InputComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 import { RootState } from '../types';
 import { actions } from './container';
-import { ActionType } from 'typesafe-actions';
-
-
 
 function TodoUseHookComponent() {
 
-  const dispatch = useDispatch<Dispatch<ActionType<typeof actions>>>();
+  const dispatch = useDispatch<Dispatch<Actions>>();
   const list = useSelector<RootState, Readonly<Item[]>>(state => state.todoUseSaga.list);
 
 
