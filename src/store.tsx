@@ -13,7 +13,7 @@ import { todoUseSagaReducer } from './TodoUseSaga/container';
 
 import { all, fork } from 'redux-saga/effects';
 import createSagaMiddleware from 'redux-saga';
-import { watchTodoListRequestStart } from './TodoUseSaga/sagas';
+import { mainSaga } from './TodoUseSaga/sagas';
 
 export const rootReducer = combineReducers({
   todo: todoReducer,
@@ -33,7 +33,7 @@ const composedMiddlewares = compose(applyMiddleware(...defaultMiddlewares), DevT
 
 
 const rootSaga = function* root() {
-  yield all([fork(watchTodoListRequestStart)]);
+  yield all([fork(mainSaga)]);
 }
 
 const store = createStore(rootReducer, composedMiddlewares);

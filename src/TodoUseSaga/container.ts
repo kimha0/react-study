@@ -1,4 +1,6 @@
-import { Item, TodoState, TodoActionTypes } from './types';
+import { Item, TodoState } from './types';
+import { action, createReducer, ActionType } from 'typesafe-actions';
+import { success, request, ASYNC_ACTION_TYPE } from './sagas';
 
 export const initialState = {
   list: [] as Readonly<Item[]>,
@@ -8,45 +10,24 @@ export const ACTION_TYPE = {
   ADD_LIST: 'todoUseSaga/ADD_LIST' as const,
   REMOVE_LIST: 'todoUseSaga/REMOVE_LIST' as const,
   UPDATE_LIST: 'todoUseSaga/UPDATE_LIST' as const,
-  GET_LIST: 'todoUseSaga/GET_LIST' as const,
-  SET_LIST: 'todoUseSaga/SET_LIST' as const,
 }
 
-export const add = (item: Item) => ({ type: ACTION_TYPE.ADD_LIST, payload: item });
-export const remove = (item: Item) => ({ type: ACTION_TYPE.REMOVE_LIST, payload: item });
-export const update = (item: Item) => ({ type: ACTION_TYPE.UPDATE_LIST, payload: item });
-export const get = () => ({ type: ACTION_TYPE.GET_LIST });
-export const set = (list: Item[]) => ({ type: ACTION_TYPE.SET_LIST, payload: list });
 
-export const todoUseSagaReducer = (state: TodoState = initialState, action: TodoActionTypes): TodoState => {
-  switch (action.type) {
-    case ACTION_TYPE.ADD_LIST: {
-      return {
-        ...state,
-        list: [...state.list, action.payload],
-      }
-    }
-    case ACTION_TYPE.REMOVE_LIST: {
-      return {
-        ...state,
-        list: state.list.filter(item => item.uuid !== action.payload.uuid),
-      }
-    }
-    case ACTION_TYPE.UPDATE_LIST: {
-      return {
-        ...state,
-        list: state.list.reduce<Item[]>((accu, curr) => [...accu, curr.uuid === action.payload.uuid ? action.payload : curr], [])
-      }
-    }
-    case ACTION_TYPE.SET_LIST: {
-      return {
-        ...state,
-        list: action.payload,
-      }
-    }
+const add = (item: Item) => action(ACTION_TYPE.ADD_LIST, item);
+const remove = (item: Item) => action(ACTION_TYPE.REMOVE_LIST, item);
+const update = (item: Item) => action(ACTION_TYPE.UPDATE_LIST, item);
 
-    default: {
-      return state;
-    }
-  }
-}
+export const actions = {
+  add,
+  remove,
+  update,
+  success,
+  request,
+};
+
+export const todoUseSagaReducer = createReducer<TodoState, ActionType<typeof actions>>(initialState, {
+  [ACTION_TYPE.ADD_LIST]: (state, action) => ({ ...state, list: [...state.list, action.payload], }),
+  [ACTION_TYPE.REMOVE_LIST]: (state, action) => ({ ...state, list: state.list.filter(item => item.uuid !== action.payload.uuid), }),
+  [ACTION_TYPE.UPDATE_LIST]: (state, action) => ({ ...state, list: state.list.reduce<Item[]>((accu, curr) => [...accu, curr.uuid === action.payload.uuid ? action.payload : curr], []), }),
+  [ASYNC_ACTION_TYPE.FETCH_TODOS_SUCCESS]: (state, action) => ({ ...state, list: action.payload }),
+});
