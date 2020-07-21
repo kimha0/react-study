@@ -19,4 +19,3 @@ export interface UpdateListAction {
 };
 export type TodoActionTypes = AddListAction | RemoveListAction | UpdateListAction;
 export type TodoState = Readonly<typeof initialState>;
-export type Props = {};
