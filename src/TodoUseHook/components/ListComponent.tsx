@@ -2,7 +2,7 @@ import React from 'react';
 import Style from './Style';
 import { Item } from '../types';
 
-const ListComponent = (props: ListComponentProps) => {
+const ListComponent = React.memo((props: ListComponentProps) => {
   const { item, removeHandle, updateHandle } = props;
   const { title, uuid } = item;
 
@@ -48,7 +48,7 @@ const ListComponent = (props: ListComponentProps) => {
       </div>
     </Style.List>
   )
-}
+});
 
 interface ListComponentProps {
   item: Item;

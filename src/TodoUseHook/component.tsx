@@ -17,10 +17,12 @@ function TodoUseHookComponent() {
   const removeHandle = React.useCallback((item: Item) => dispatch(actions.remove(item)), [dispatch]);
   const addHandle = React.useCallback((item: Item) => dispatch(actions.add(item)), [dispatch]);
 
+  const ItemList = filteredList.map(item => <ListComponent key={item.uuid} item={item} removeHandle={removeHandle} updateHandle={updateHandle} />);
+
 
   return (
     <div className="App">
-      {filteredList.map(item => <ListComponent key={item.uuid} item={item} removeHandle={removeHandle} updateHandle={updateHandle} />)}
+      {ItemList}
       <InputComponent add={addHandle} />
     </div>
   );
